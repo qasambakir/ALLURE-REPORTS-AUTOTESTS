@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '2.10.0' // плагин Allure
+}
+
+allure {
+    report {
+        version.set("2.19.0") // версия Allure отчета
+    }
+    adapter {
+        aspectjWeaver.set(true) // Включаем поддержку @Step аннотаций
+        frameworks {
+            junit5 {
+                adapterVersion.set("2.19.0") // версия адаптера для JUnit5 и Allure
+            }
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation(
+            'com.codeborne:selenide:7.5.0', // Selenide для браузерного тестирования
+            "org.junit.jupiter:junit-jupiter:5.10.0", // JUnit5 для тестов
+            "io.qameta.allure:allure-selenide:2.21.0" // интеграция Allure с Selenide
+    )
+}
+
+test {
+    useJUnitPlatform()
+    systemProperties(System.getProperties()) // Подключаем системные переменные
+}
