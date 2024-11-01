@@ -4,6 +4,9 @@ plugins {
 }
 
 allure {
+    adapter {
+        aspectjVersion.set("1.9.21")
+    }
     report {
         version.set("2.19.0") // версия Allure отчета
     }
@@ -16,6 +19,7 @@ allure {
         }
     }
 }
+
 
 repositories {
     mavenCentral()
